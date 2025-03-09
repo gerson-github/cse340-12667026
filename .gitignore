@@ -14,3 +14,10 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
+# not in git
+README.md
+
+#my fiels for training
+ggserver.js
+gserver.js
