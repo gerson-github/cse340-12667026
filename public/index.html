@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- JavaScript -->
+    <script defer src="/js/script.js"></script>
+
+    <title>Document</title>
+    <style>
+      /* 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+*/
+
+      /* header,
+      main,
+      footer {
+        margin-left: 10%;
+        margin-right: 10%;
+        
+      } */
+
+      /* width: 100%;
+        height: 100%; */
+      /* display: flex;
+        flex-direction: column;
+        flex-grow: 1;  */
+      /* margin: 0;
+        padding: 0; */
+
+      /* html,
+      body {
+        background-image: url("images/site/checkerboard.jpg");
+        background-attachment: fixed;
+
+      }
+
+       header, footer {
+        height: 100px;
+        width: 100%;
+      } 
+
+      main {
+        position: absolute;
+        top: 100px; 
+        bottom: 100px; 
+
+        width: 100%;
+
+        background-color: blueviolet;
+      }
+
+      footer {
+        position: absolute; 
+        bottom: 0;
+        
+      }
+       */
+
+       :root {
+        --border-width: 10px;
+        --border-color: rgb(186, 184, 184);
+        --primary-color: rgb(34, 150, 243);
+        --secondary-color: rgb(255, 87, 34);
+        --background-color: rgb(240, 240, 240);
+        --text-color: rgb(33, 33, 33);
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        background-image: url("images/site/checkerboard.jpg");
+        background-attachment: fixed;
+      }
+
+      header,
+      main,
+      footer {
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+        border-left: var(--border-width) solid var(--border-color);
+        border-right: var(--border-width) solid var(--border-color);
+        background-color: whitesmoke;
+        border: 5px solidvar(--border-color);
+      }
+     
+      header {
+        margin-top: 15px;
+        border-top: var(--border-width) solid var(--border-color);
+        border-top-left-radius: 20px;  
+        border-top-right-radius: 20px;
+      }
+
+      header,
+      footer {
+        height: 100px;
+      }
+
+      main {
+        flex-grow: 1; /* Ocupa todo o espaço disponível */
+      }
+
+      footer {
+        margin-bottom: 15px; 
+        border-bottom: var(--border-width) solid var(--border-color);
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+    </style>
+
+  </head>
+  <header >
+    <div>header</div>
+  </header>
+  <body>
+    <main>
+      <p>gerson</p>
+    </main>
+  </body>
+  <footer >
+    <div>footer</div>
+  </footer>
+</html>
