@@ -4,3 +4,310 @@
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --border-width: 10px;
+  --border-color: rgb(186, 184, 184);
+  --primary-color: rgb(34, 150, 243);
+  --secondary-color: rgb(255, 87, 34);
+  --background-color: rgb(240, 240, 240);
+  --background-color-features: rgba(242, 240, 236, .766);
+  --text-color: rgb(33, 33, 33);
+}
+
+/* 
+* {
+  box-sizing: border-box;
+} */
+
+
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-image: url("/images/site/checkerboard.jpg");
+  background-attachment: fixed;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: black;
+}
+
+header,
+main,
+nav,
+footer {
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  border-left: var(--border-width) solid var(--border-color);
+  border-right: var(--border-width) solid var(--border-color);
+  background-color: whitesmoke;
+  border: 5px solidvar(--border-color);
+}
+
+/* main {
+  background-color: green;
+} */
+
+header {
+  margin-top: 15px;
+  border-top: var(--border-width) solid var(--border-color);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+header,
+footer {
+  height: 100px;
+}
+
+main {
+  flex-grow: 1; /* Ocupa todo o espaço disponível */
+}
+
+footer {
+  margin-bottom: 15px;
+  border-bottom: var(--border-width) solid var(--border-color);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+ a {
+  color: black;
+  
+} 
+
+/*nav bar */
+nav {
+  background-color: black;
+  padding: 10px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  color: whitesmoke;
+  /* padding: 10px 20px; */
+  cursor: pointer;
+  font-size: 22px;
+}
+
+/*Top Header  */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.siteName a {
+  font-size: 3rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#tools a {
+  text-decoration: none;
+}
+
+#tools,
+.siteName {
+  padding: 10px;
+}
+
+/* estrutura do layout  */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+.grid-item img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+}
+.grid-item a {
+  display: block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+
+
+#heroImage {
+  position: relative;
+  width: 100%;
+}
+
+#heroImage img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+
+  width: 700px;
+  height: 350px;
+}
+
+#heroImage p {
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 5px;
+  margin: 0;
+}
+
+#carFeatures {
+position: absolute;
+left: 22%;
+top: 25%;
+display: flex; /* Enables flexbox */
+flex-direction: column; /* Stacks elements vertically */
+align-items: center; /* Centers content horizontally */
+justify-content: center; /* Centers content vertically */
+/* width: 15%; */
+/* width: 280px; */
+/* height: 250px; */
+
+width: 40vw; /* Use viewport width to make it responsive */
+max-width: 300px; /* Prevents it from getting too large */
+min-width: 200px; /* Prevents it from getting too small */
+
+height: auto; /* Let height adjust based on content */
+max-height: 70vh; /* Prevent it from being too tall */
+
+
+background-color: var(--background-color-features);
+padding: 2vw;
+/* padding: 10px; */
+text-align: center; /* Centers text inside elements */
+}
+
+#carFeatures ul {
+padding: 0;
+margin: 0;
+}
+
+#carFeatures ul li {
+font-size: 25px;
+font-weight: bold;
+list-style: none;
+text-align: left; 
+/* text-align: center; */
+}
+
+#carFeatures button {
+border: 1.5px solid black;
+background-color: transparent;
+color: black;
+font-size: 20px;
+padding: 10px 20px;
+cursor: pointer;
+font-weight: bold;
+margin-top: 25px; /* Space between list and button */
+transition: all 0.3s ease-in-out; /* Smooth effect */
+box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+
+#carFeatures button:hover {
+background-color: #ffcc00; /* High-contrast yellow */
+color: whitesmoke; /* Keep text black */
+}
+
+/* Main container: Split into two columns */
+#container {
+display: flex; 
+flex-wrap: wrap;
+width: 100%; 
+}
+
+aside, #upgrades {
+flex: 1 1 50%; /* Allow the item to grow, shrink, and take 50% of the space */
+padding: 20px; /* Reduce padding so it doesn't take up too much space */
+box-sizing: border-box; 
+
+}
+
+aside h1 {
+text-align: center;
+}
+
+aside li {
+padding: 20px;
+}
+
+#upgrades {
+width: 100%;
+text-align: center;
+}
+
+#galery {
+display: grid; 
+grid-template-columns: repeat(2,1fr);
+grid-template-rows: auto;
+width: 100%; 
+}
+
+figure {
+
+padding: 10px;
+}
+
+figure:hover{
+border: 1px dotted rgb(176, 174, 174);
+}
+
+figure:hover a {
+text-decoration: underline;
+}
+
+
+figure img {
+width: 80px;
+height: 80px;
+}
+
+figure a {
+text-decoration: none;
+}
+
+footer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 785px) {
+#carFeatures {
+  width: 50vw; /* Increase width for smaller screens */
+  left: 5%;
+  top: 20%;
+}
+
+#heroImage p,  .siteName a {
+font-size: 24px;
+}
+
+nav ul li, #carFeatures ul li, #carFeatures button {
+font-size: 16px;
+}
+
+#carFeatures {
+width: 50%;
+}
+
+}
