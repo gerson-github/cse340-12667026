@@ -163,6 +163,7 @@
 
       #heroImage {
         position: relative;
+        width: 100%;
       }
 
       #heroImage img {
@@ -189,10 +190,21 @@
     flex-direction: column; /* Stacks elements vertically */
     align-items: center; /* Centers content horizontally */
     justify-content: center; /* Centers content vertically */
-    width: 280px;
-    height: 250px;
+    /* width: 15%; */
+    /* width: 280px; */
+    /* height: 250px; */
+
+    width: 40vw; /* Use viewport width to make it responsive */
+    max-width: 300px; /* Prevents it from getting too large */
+    min-width: 200px; /* Prevents it from getting too small */
+    
+    height: auto; /* Let height adjust based on content */
+    max-height: 70vh; /* Prevent it from being too tall */
+
+
     background-color: var(--background-color-features);
-    padding: 10px;
+    padding: 2vw;
+    /* padding: 10px; */
     text-align: center; /* Centers text inside elements */
 }
 
@@ -287,6 +299,28 @@ figure a {
 footer {
   text-align: center;
 }
+
+@media (max-width: 785px) {
+    #carFeatures {
+        width: 50vw; /* Increase width for smaller screens */
+        left: 5%;
+        top: 20%;
+    }
+
+    #heroImage p,  .siteName a {
+      font-size: 24px;
+    }
+
+    nav ul li, #carFeatures ul li, #carFeatures button {
+      font-size: 16px;
+    }
+
+    #carFeatures {
+      width: 50%;
+    }
+
+  }
+
     </style>
   </head>
   <header id="top-header">
