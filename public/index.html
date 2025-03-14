@@ -17,66 +17,22 @@
 
     <title>Document</title>
     <style>
-      /* 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; 
-*/
-
-      /* header,
-      main,
-      footer {
-        margin-left: 10%;
-        margin-right: 10%;
-        
-      } */
-
-      /* width: 100%;
-        height: 100%; */
-      /* display: flex;
-        flex-direction: column;
-        flex-grow: 1;  */
-      /* margin: 0;
-        padding: 0; */
-
-      /* html,
-      body {
-        background-image: url("images/site/checkerboard.jpg");
-        background-attachment: fixed;
-
-      }
-
-       header, footer {
-        height: 100px;
-        width: 100%;
-      } 
-
-      main {
-        position: absolute;
-        top: 100px; 
-        bottom: 100px; 
-
-        width: 100%;
-
-        background-color: blueviolet;
-      }
-
-      footer {
-        position: absolute; 
-        bottom: 0;
-        
-      }
-       */
-
-       :root {
+      :root {
         --border-width: 10px;
         --border-color: rgb(186, 184, 184);
         --primary-color: rgb(34, 150, 243);
         --secondary-color: rgb(255, 87, 34);
         --background-color: rgb(240, 240, 240);
+        --background-color-features: rgba(242, 240, 236, .766);
         --text-color: rgb(33, 33, 33);
       }
+
+
+      * {
+        box-sizing: border-box;
+      }
+
+
 
       html,
       body {
@@ -87,10 +43,15 @@
         flex-direction: column;
         background-image: url("images/site/checkerboard.jpg");
         background-attachment: fixed;
+        font-family: "Roboto", sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: black;
       }
 
       header,
       main,
+      nav,
       footer {
         margin-left: 10%;
         margin-right: 10%;
@@ -100,11 +61,15 @@
         background-color: whitesmoke;
         border: 5px solidvar(--border-color);
       }
-     
+
+      /* main {
+        background-color: green;
+      } */
+
       header {
         margin-top: 15px;
         border-top: var(--border-width) solid var(--border-color);
-        border-top-left-radius: 20px;  
+        border-top-left-radius: 20px;
         border-top-right-radius: 20px;
       }
 
@@ -118,23 +83,285 @@
       }
 
       footer {
-        margin-bottom: 15px; 
+        margin-bottom: 15px;
         border-bottom: var(--border-width) solid var(--border-color);
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
       }
-    </style>
 
+       a {
+        color: black;
+        
+      } 
+
+      /*nav bar */
+      nav {
+        background-color: black;
+        padding: 10px 0;
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: space-evenly;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      nav ul li {
+        color: whitesmoke;
+        /* padding: 10px 20px; */
+        cursor: pointer;
+        font-size: 22px;
+      }
+
+      /*Top Header  */
+      #top-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .siteName a {
+        font-size: 3rem;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      #tools a {
+        text-decoration: none;
+      }
+
+      #tools,
+      .siteName {
+        padding: 10px;
+      }
+
+      /* estrutura do layout  */
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 600px;
+        margin: auto;
+        text-align: center;
+      }
+      .grid-item img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        border-radius: 10px;
+      }
+      .grid-item a {
+        display: block;
+        margin-top: 10px;
+        text-decoration: none;
+        color: blue;
+        font-weight: bold;
+      }
+ 
+
+      #heroImage {
+        position: relative;
+      }
+
+      #heroImage img {
+        display: block;
+        margin: auto;
+        max-width: 100%;
+
+        width: 700px;
+        height: 350px;
+      }
+
+      #heroImage p {
+        font-size: 3rem;
+        font-weight: bold;
+        padding: 5px;
+        margin: 0;
+      }
+
+      #carFeatures {
+    position: absolute;
+    left: 22%;
+    top: 25%;
+    display: flex; /* Enables flexbox */
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center; /* Centers content horizontally */
+    justify-content: center; /* Centers content vertically */
+    width: 280px;
+    height: 250px;
+    background-color: var(--background-color-features);
+    padding: 10px;
+    text-align: center; /* Centers text inside elements */
+}
+
+#carFeatures ul {
+    padding: 0;
+    margin: 0;
+}
+
+#carFeatures ul li {
+    font-size: 25px;
+    font-weight: bold;
+    list-style: none;
+    text-align: left; 
+    /* text-align: center; */
+}
+
+#carFeatures button {
+    border: 1.5px solid black;
+    background-color: transparent;
+    color: black;
+    font-size: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 25px; /* Space between list and button */
+    transition: all 0.3s ease-in-out; /* Smooth effect */
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+
+#carFeatures button:hover {
+    background-color: #ffcc00; /* High-contrast yellow */
+    color: whitesmoke; /* Keep text black */
+}
+
+/* Main container: Split into two columns */
+#container {
+    display: flex; 
+    flex-wrap: wrap;
+     width: 100%; 
+}
+
+aside, #upgrades {
+    flex: 1 1 50%; /* Allow the item to grow, shrink, and take 50% of the space */
+    padding: 20px; /* Reduce padding so it doesn't take up too much space */
+    box-sizing: border-box; 
+    
+}
+
+aside h1 {
+  text-align: center;
+}
+
+aside li {
+  padding: 20px;
+}
+
+#upgrades {
+  width: 100%;
+  text-align: center;
+}
+
+#galery {
+  display: grid; 
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto;
+     width: 100%; 
+}
+
+figure {
+  
+  padding: 10px;
+}
+
+figure:hover{
+  border: 1px dotted rgb(176, 174, 174);
+}
+
+figure:hover a {
+  text-decoration: underline;
+}
+
+
+figure img {
+  width: 80px;
+  height: 80px;
+}
+
+figure a {
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+}
+    </style>
   </head>
-  <header >
-    <div>header</div>
+  <header id="top-header">
+    <span class="siteName">
+      <a href="/" title="Return to home page">CSE Motors</a>
+    </span>
+    <div id="tools">
+      <a title="Click to log in" href="/account/login">My Account</a>
+    </div>
   </header>
   <body>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>Custom</li>
+        <li>Sedan</li>
+        <li>SUV</li>
+        <li>Truck</li>
+      </ul>
+    </nav>
     <main>
-      <p>gerson</p>
+
+      <section id="heroImage">
+        <p>Welcome to CSE Motors !</p>
+        <img src="/public/images/vehicles/delorean-removebg-preview.png" alt="" />
+        <div id="carFeatures">
+          <ul>
+            <li>DMC Delorean</li>
+            <li>3 Cup Holders</li>
+            <li>Superman Doors</li>
+            <li>Fuzzy Dice!</li>
+          </ul>
+          <button>Own Today</button>
+        </div>
+      </section>
+      
+      <div id="container">
+
+        <section id="upgrades">
+          <h1>Delorean Upgrades</h1>
+          <div id="galery">
+            <figure>
+              <img src="/public/images/upgrades/flux-cap.png" alt="Image 3" />
+              <figcaption><a href="#">Flux Capacitor</a></figcaption>
+            </figure>
+            <figure>
+              <img src="/public/images/upgrades/flame.jpg" alt="Image 2" />
+              <figcaption><a href="#">Flame Decals</a></figcaption>
+            </figure>
+            <figure>
+              <img src="/public/images/upgrades/bumper_sticker.jpg" alt="Image 1" />
+              <figcaption><a href="#">Bumper Stickers</a></figcaption>
+            </figure>
+            <figure>
+              <img src="/public/images/upgrades/hub-cap.jpg" alt="Image 4" />
+              <figcaption><a href="#">Hub Caps</a></figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <aside id="reviews">
+          <h1>DMC Delorean Reviews</h1>
+          <ul>
+            <li>"So fast it's almost like travelling in time." (4/5)</li>
+            <li>"Coolest ride on the road. (4/5)</li>
+            <li>"I'm feeling McFly!" (5/5)</li>
+            <li>"The most futuristic ride of our day." (4.5/5)</li>
+            <li>"80's livin and I love it!" (5/5)</li>
+          </ol>
+        </aside>
+      </div>    
+      
     </main>
   </body>
-  <footer >
-    <div>footer</div>
+  <footer>
+    <p class="copyright">&copy; 2025, CSE 340 App</p>
   </footer>
 </html>
