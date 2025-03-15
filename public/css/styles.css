@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+
+* {
+  font-family: Arial, sans-serif !important;
+}
+
+
 :root {
   --border-width: 10px;
   --border-color: rgb(186, 184, 184);
@@ -14,12 +20,6 @@
   --background-color-features: rgba(242, 240, 236, .766);
   --text-color: rgb(33, 33, 33);
 }
-
-/* 
-* {
-  box-sizing: border-box;
-} */
-
 
 
 html,
@@ -31,7 +31,7 @@ body {
   flex-direction: column;
   background-image: url("/images/site/checkerboard.jpg");
   background-attachment: fixed;
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
   font-size: 16px;
   line-height: 1.5;
   color: black;
@@ -47,7 +47,7 @@ footer {
   border-left: var(--border-width) solid var(--border-color);
   border-right: var(--border-width) solid var(--border-color);
   background-color: whitesmoke;
-  border: 5px solidvar(--border-color);
+  
 }
 
 /* main {
