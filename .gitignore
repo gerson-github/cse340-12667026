@@ -18,6 +18,11 @@ node_modules
 # not in git
 README.md
 
+# not in git
+pnpm-lock.yaml
+
 #my fiels for training
 ggserver.js
 gserver.js
+report validator.zip
+mySql.mySql
