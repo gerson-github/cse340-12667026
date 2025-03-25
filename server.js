@@ -10,6 +10,7 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
+const baseController = require("./controllers/baseController")
 
 /* ***********************
  * Routes
@@ -21,11 +22,12 @@ app.set("layout", "./layouts/layout") // not at views root
 
 
 //index route
-app.get('/', (req, res) => {
-  console.log('user hit the resource')
-  res.render("index", {title:"home"})
-  //res.status(200).send('Home Page')
-})
+// app.get('/', (req, res) => {
+//   console.log('user hit the resource')
+//   res.render("index", {title:"home"})
+//   //res.status(200).send('Home Page')
+// })
+app.get("/", baseController.buildHome)
 
 app.all('*', (req, res) => {
   res.status(404).send('Resource not fount !')
