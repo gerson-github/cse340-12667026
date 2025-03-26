@@ -12,6 +12,8 @@ const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute");
+const utilities = require("./utilities"); 
+
 
 
 /* ***********************
@@ -21,7 +23,7 @@ app.use(static)
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
-app.use("/inv", inventoryRoute)
+app.use("/inv", inventoryRoute)  // executa 1
 
 //index route
 // app.get('/', (req, res) => {
@@ -29,11 +31,29 @@ app.use("/inv", inventoryRoute)
 //   res.render("index", {title:"home"})
 //   //res.status(200).send('Home Page')
 // })
-app.get("/", baseController.buildHome)
-
-app.all('*', (req, res) => {
-  res.status(404).send('Resource not fount !')
+app.get("/", baseController.buildHome) // executa 2
+app.use(async (req, res, next) => {   //  executa 3
+  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
+
+// app.all('*', (req, res) => {
+//   res.status(404).send('Resource not fount !')
+// })
+
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await utilities.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message: err.message,
+    nav
+  })
+})
+
 
 
 /* ***********************
@@ -49,3 +69,5 @@ const host = process.env.HOST
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
+
+
