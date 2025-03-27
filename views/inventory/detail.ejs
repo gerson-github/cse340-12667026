@@ -1,0 +1,58 @@
+
+<%# messages() %>
+
+<%- vehicleHTML %>
+
+
+
+<style>
+  
+
+  main h1 {
+    margin: 0;
+    padding: 10px;
+}
+    .vehicle-detail {
+    display: flex; /* Align items in a row */
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Distribute space between the image and the summary */
+    align-items: center; /* Vertically align items */
+    
+    /* padding: 10px; */
+    background-color: white;  
+  }
+  
+  #vehicle-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align text to the top */
+    gap: 5px;
+    padding: 5px;
+    width: 50%; 
+  }
+  
+  .vehicle-detail img {
+    width: 45rem; /* Adjust width of the image */
+    max-width: 100%; /* Ensure the image scales correctly */
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  
+
+  @media (max-width: 785px) {
+
+        nav ul li a {
+            font-size: 14px;
+        }
+
+        #vehicle-summary {
+            width: 100%;
+        }
+  }
+  
+  
+  
+  
+  
+  </style>

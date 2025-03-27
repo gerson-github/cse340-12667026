@@ -16,6 +16,7 @@ const utilities = require("./utilities");
 
 
 
+
 /* ***********************
  * Routes
  *************************/
@@ -31,25 +32,36 @@ app.use("/inv", inventoryRoute)  // executa 1
 //   res.render("index", {title:"home"})
 //   //res.status(200).send('Home Page')
 // })
-app.get("/", baseController.buildHome) // executa 2
+//app.get("/", baseController.buildHome) 
+app.get("/", utilities.handleErrors(baseController.buildHome)) // executa 2
 app.use(async (req, res, next) => {   //  executa 3
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
 
 // app.all('*', (req, res) => {
-//   res.status(404).send('Resource not fount !')
+//    res.status(404).send('Resource not fount !')
 // })
 
 /* ***********************
 * Express Error Handler
 * Place after all other middleware
 *************************/
+// app.use(async (err, req, res, next) => {
+//   let nav = await utilities.getNav()
+//   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+//   res.render("errors/error", {
+//     title: err.status || 'Server Error',
+//     message: err.message,
+//     nav
+//   })
+// })
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
-    message: err.message,
+    message,
     nav
   })
 })
