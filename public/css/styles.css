@@ -48,6 +48,7 @@ footer {
   border-right: var(--border-width) solid var(--border-color);
   background-color: whitesmoke;
   
+  
 }
 
 /* main {
@@ -68,6 +69,7 @@ footer {
 
 main {
   flex-grow: 1; /* Ocupa todo o espaço disponível */
+
 }
 
 footer {
@@ -76,6 +78,16 @@ footer {
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
 }
+
+footer  {
+   display: flex;
+  flex-direction: column;
+ }
+
+ footer p {
+  margin: 0;
+ }
+
 
  a {
   color: black;

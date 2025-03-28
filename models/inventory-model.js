@@ -30,7 +30,7 @@ async function getInventoryByClassificationId(classification_id) {
  * ************************** */
 async function getVehicleById(inv_id) {
   try {
-      const sql = "SELECT *, TO_CHAR(inv_price, 'FM999,999,999') as inv_price_dec FROM inventory WHERE inv_id = $1";
+      const sql = "SELECT *, TO_CHAR(inv_price, 'FM999,999,999') as inv_price_dec, TO_CHAR(inv_miles, 'FM999,999,999') as inv_miles_dec FROM inventory WHERE inv_id = $1";
       const result = await pool.query(sql, [inv_id]);
       return result.rows[0]; // Assuming PostgreSQL (for MySQL, use result[0])
   } catch (error) {

@@ -74,10 +74,9 @@ Util.buildVehicleDetailHTML = async function (req, res, next) {
             <div id="vehicle-summary">
               <h2>Price: $${vehicle.inv_price_dec}</h2>
               <p><strong>Year:</strong> ${vehicle.inv_year}</p>
-              <p><strong>Mileage:</strong> ${vehicle.inv_miles.toLocaleString("en-US")} miles</p>
               <p><strong>Description:</strong> ${vehicle.inv_description}</p>              
               <p><strong>Color:</strong> ${vehicle.inv_color}</p>              
-              <p><strong>Miles:</strong> ${vehicle.inv_miles}</p>              
+              <p><strong>Miles:</strong> ${vehicle.inv_miles_dec}</p>              
             </div>
         </div>
     `
