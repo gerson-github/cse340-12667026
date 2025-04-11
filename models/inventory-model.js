@@ -1,3 +1,11 @@
+/* ***************************
+ *  MVC STYLE
+ *  THIS FILE IF ->  M O D E L
+ * 
+ * ps: Represents the data, business logic, and rules of the application.
+ * 
+ * ************************** */
+
 const pool = require("../database/")
 
 /* ***************************

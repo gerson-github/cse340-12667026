@@ -1,3 +1,11 @@
+/* ***************************
+ *  Server.js  ->  inventoryRoute  [Controller -> model]
+ *  
+ *  Este modulo, pega o que e gerado no controller e devolver para o browser
+ *  
+ * ************************** */
+
+
 // Needed Resources 
 const express = require("express")
 const router = new express.Router() 

@@ -1,3 +1,10 @@
+/* ***************************
+ *  FOLDER UTILLITIES - index.js
+ *
+ *  Gera o HTML Dinamico que sera inserido na paginda EJS.
+ *   
+ * ************************** */
+
 const invModel = require("../models/inventory-model")
 const Util = {}
 

@@ -1,3 +1,11 @@
+/* ***************************
+ *  MVC STYLE
+ *  THIS FILE IF ->  C O N T R O L L E R
+ * 
+ *  ps: Acts as an intermediary between the Model and the View.
+ * 
+ * ************************** */
+
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
 

@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>undefined undefined | CSE 340 app</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script defer src="/js/script.js"></script>
+
+
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <header id="top-header">
+    <span class="siteName">
+      <a href="/" title="Return to home page">CSE Motors</a>
+    </span>
+    <div id="tools">
+      <a title="Click to log in" href="/account/login">My Account</a>
+    </div>
+  </header> <nav>
+  <ul><li><a href="/" title="Home page">Home</a></li><li><a href="/inv/type/1" title="See our inventory of Custon vehicles">Custon</a></li><li><a href="/inv/type/5" title="See our inventory of Sedan vehicles">Sedan</a></li><li><a href="/inv/type/2" title="See our inventory of Sport vehicles">Sport</a></li><li><a href="/inv/type/3" title="See our inventory of SUV vehicles">SUV</a></li><li><a href="/inv/type/4" title="See our inventory of Truck vehicles">Truck</a></li></ul>
+  <!-- <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/">Custom</a></li>
+    <li><a href="/">Sedan</a></li>
+    <li><a href="/">SUV</a></li>
+    <li><a href="/">Truck</a></li> -->
+  </ul>
+</nav>
+
+      <main>
+        <h1>FBI Surveillance Van</h1>      
+        <div class="vehicle-detail">
+            <img src="/public/images/vehicles/survan.jpg" alt="Image of FBI Surveillance Van">
+            <div id="vehicle-summary">
+              <h2>Price: $20000</h2>
+              <p><strong>Year:</strong> 2016</p>
+              <p><strong>Mileage:</strong> 19,851 miles</p>
+              <p><strong>Description:</strong> Do you like police shows? You will feel right at home driving this van, comes complete with survalence equipments for and extra fee of $2,000 a month.</p>
+              </div>
+        </div>
+     </main>
+
+<style>
+  
+  .vehicle-detail {
+  display: flex; /* Align items in a row */
+  flex-wrap: wrap;
+  justify-content: space-evenly; /* Distribute space between the image and the summary */
+  align-items: center; /* Vertically align items */
+  
+  /* padding: 10px; */
+  background-color: white;  
+}
+
+#vehicle-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align text to the top */
+  gap: 5px;
+   padding: 15px;
+  /* Adjust width to ensure the content doesn't take too much space */
+  width: 50%; 
+}
+
+.vehicle-detail img {
+  width: 50%; /* Adjust width of the image */
+  max-width: 100%; /* Ensure the image scales correctly */
+  border-radius: 10px;
+  padding: 20px;
+}
+
+
+
+
+
+
+
+</style>
+
+     
+
+<footer>
+  <p class="copyright">&copy; 2025, CSE 340 App</p>
+</footer>
+    </div>
+  </body>
+</html>

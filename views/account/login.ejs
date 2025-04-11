@@ -1,0 +1,88 @@
+<!-- * **************************************
+* Header
+* ************************************  -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <h1>Page Not Found</h1>
+<% } %>
+
+
+
+    <div class="formulario">
+      <fieldset>
+        <legend>Crendentials</legend>
+        <label for="email-address">Email Address</label>
+        <input type="text" name="email-address" id="email-address" >
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+        <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
+        <button id="btn-show-password" type="button"> Show Password</button>
+        <button id="login" type="submit">Login</button>
+      </fieldset>
+      <label id="no-account" for="sing-up">No account? <a  id="sing-up" href="#">Sing up</a></label>
+    </div>
+   
+
+
+<style>
+  .formulario {
+    display: flex; 
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
+    background-color: white;  
+    padding: 20px;
+  }
+
+  h1 {
+    margin-top: 0;
+    padding-left: 10px;
+    padding-top: 10px;
+
+  }
+  
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #b4b2b2;
+    padding: 1em;
+    border-radius: 8px;
+    width: 400px;
+  }
+  
+  legend {
+    font-weight: bold;
+  }
+  
+  fieldset button, input {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  
+  fieldset button:hover {
+    background-color: #b4b2b2;
+    font-weight: bold;
+  }
+  
+  fieldset input:hover {
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+    border-color: #555;
+  }
+
+  fieldset label, p {
+    margin-left: 5px;
+  }
+  
+  #no-account {
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  #no-account a:hover {
+    font-weight: bold;
+  }
+  </style>

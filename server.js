@@ -11,9 +11,34 @@ const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute");
-const utilities = require("./utilities"); 
+const inventoryRoute = require("./routes/inventoryRoute")
+const accountRoute = require("./routes/accountRoute")
+const utilities = require("./utilities") 
+const session = require("express-session")
+const pool = require('./database/')
 
+/* ***********************
+ * Middleware - criou um cook e tambem gravou no banco de dados
+ * ************************/
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
+
+/* ***********************
+// Express Messages Middleware - Esse aqui deve gerar uma mensage na tela
+* ************************/
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 
 
@@ -24,7 +49,7 @@ app.use(static)
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
-app.use("/inv", inventoryRoute)  // executa 1
+
 
 //index route
 // app.get('/', (req, res) => {
@@ -33,10 +58,21 @@ app.use("/inv", inventoryRoute)  // executa 1
 //   //res.status(200).send('Home Page')
 // })
 //app.get("/", baseController.buildHome) 
-app.get("/", utilities.handleErrors(baseController.buildHome)) // executa 2
-app.use(async (req, res, next) => {   //  executa 3
-   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+app.get("/", utilities.handleErrors(baseController.buildHome)) // executa 1
+app.use("/inv", inventoryRoute)  // executa 2
+app.use("/account", accountRoute)  // executa 3
+
+// Catch-all route for invalid URLs (404 Not Found)
+app.use((req, res, next) => {
+  const error = new Error('Sorry, we appear to have lost that page.');
+  error.status = 404;
+  next(error); // Pass to the error handler
+});
+
+
+// app.use(async (req, res, next) => {   //  executa 3
+//    next({status: 404, message: 'Sorry, we appear to have lost that page.'})
+// })
 
 // app.all('*', (req, res) => {
 //    res.status(404).send('Resource not fount !')

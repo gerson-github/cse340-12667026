@@ -312,6 +312,28 @@ footer {
   text-align: center;
 }
 
+/* Add these styles in your stylesheet */
+.notice {
+  background-color: lightblue;
+  color: black;
+  padding: 10px;
+  border: 1px solid blue;
+  margin: 10px 0;
+  width: 250px;
+  list-style-type: none; 
+}
+
+.error {
+  background-color: lightcoral;
+  color: white;
+  padding: 10px;
+  border: 1px solid red;
+  margin: 10px 0;
+  width: 250px;
+  list-style-type: none; 
+}
+
+
 @media (max-width: 785px) {
 #carFeatures {
   width: 50vw; /* Increase width for smaller screens */

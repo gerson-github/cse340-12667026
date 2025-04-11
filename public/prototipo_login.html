@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>undefined undefined | CSE 340 app</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script defer src="/js/script.js"></script>
+
+
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <header id="top-header">
+    <span class="siteName">
+      <a href="/" title="Return to home page">CSE Motors</a>
+    </span>
+    <div id="tools">
+      <a title="Click to log in" href="/account/login">My Account</a>
+    </div>
+  </header> <nav>
+  <ul><li><a href="/" title="Home page">Home</a></li><li><a href="/inv/type/1" title="See our inventory of Custon vehicles">Custon</a></li><li><a href="/inv/type/5" title="See our inventory of Sedan vehicles">Sedan</a></li><li><a href="/inv/type/2" title="See our inventory of Sport vehicles">Sport</a></li><li><a href="/inv/type/3" title="See our inventory of SUV vehicles">SUV</a></li><li><a href="/inv/type/4" title="See our inventory of Truck vehicles">Truck</a></li></ul>
+  <!-- <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/">Custom</a></li>
+    <li><a href="/">Sedan</a></li>
+    <li><a href="/">SUV</a></li>
+    <li><a href="/">Truck</a></li> -->
+  </ul>
+</nav>
+
+      <main>
+        <h1>Login</h1>      
+        <div class="formulario">
+          <fieldset>
+            <legend>Crendentials</legend>
+            <label for="email-address">Email Address</label>
+            <input type="text" name="email-address" id="email-address" >
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
+            <button id="btn-show-password" type="button"> Show Password</button>
+            <button id="login" type="submit">Login</button>
+          </fieldset>
+          <label id="no-account" for="sing-up">No account? <a  id="sing-up" href="#">Sing up</a></label>
+        </div>
+     </main>
+
+<style>
+  
+  .formulario {
+  display: flex; 
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center;
+  background-color: white;  
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #b4b2b2;
+  padding: 1em;
+  border-radius: 8px;
+  width: 400px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+fieldset button, input {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+fieldset button:hover {
+  background-color: #b4b2b2;
+  font-weight: bold;
+}
+
+fieldset label, p {
+  margin-left: 5px;
+}
+
+#no-account {
+  padding: 10px;
+  margin: 10px;
+}
+
+#no-account a:hover {
+  font-weight: bold;
+}
+</style>
+
+     
+
+<footer>
+  <p class="copyright">&copy; 2025, CSE 340 App</p>
+</footer>
+    </div>
+  </body>
+</html>
