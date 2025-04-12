@@ -16,6 +16,8 @@ const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities") 
 const session = require("express-session")
 const pool = require('./database/')
+const bodyParser = require("body-parser")
+const messages = require('express-messages')
 
 /* ***********************
  * Middleware - criou um cook e tambem gravou no banco de dados
@@ -31,6 +33,13 @@ app.use(session({
   name: 'sessionId',
 }))
 
+// app.use(flash())
+
+// app.use((req, res, next) => {
+//   res.locals.messages = messages(req, res)
+//   next()
+// })
+
 /* ***********************
 // Express Messages Middleware - Esse aqui deve gerar uma mensage na tela
 * ************************/
@@ -40,7 +49,11 @@ app.use(function(req, res, next){
   next()
 })
 
-
+/* ***********************
+ * Middleware - for parsing application/x-www-form-urlencoded
+ * ************************/
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) 
 
 /* ***********************
  * Routes
