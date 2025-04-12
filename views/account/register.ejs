@@ -9,23 +9,32 @@
 
 <% messages() %>
 
-<form class="formulario" action="/account/register" method="post">
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<form id="registerForm" class="formulario" action="/account/register" method="post">
     <fieldset>
       <legend>All Fields are Required</legend>
       <label for="account-firstname">First name:</label>
-      <input type="text" name="account_firstname" id="account-firstname" required>
+      <input type="text" name="account_firstname" id="account-firstname" required autocomplete="off" >
       <label for="account-lastname">Last name:</label>
-      <input type="text" name="account_lastname" id="account-lastname" required>
+      <input type="text" name="account_lastname" id="account-lastname" required autocomplete="off">
       <label for="email-address">Email Address</label>
-      <input type="email" name="account_email" id="email-address" required>
+      <input type="email" name="account_email" id="email-address" required autocomplete="off">
       <label for="password">Password</label>
-      <!-- <input id="password" name="account_password" type="password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])" minlength="12" maxlength="20" required> -->
+      
       <input id="password" name="account_password" 
         type="password" 
         pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{12,20}$"
         minlength="12" 
         maxlength="20" 
-        required>
+        required
+        >
       <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
       <button id="btn-show-password" type="button"> Show Password</button>
       <button id="login" type="submit">Register</button>
@@ -36,74 +45,15 @@
 
 
 <style>
-  .formulario {
-    display: flex; 
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center; 
-    align-items: center;
-    background-color: white;  
-    padding: 20px;
-  }
+  
 
-  h1 {
-    margin-top: 0;
-    padding-left: 10px;
-    padding-top: 10px;
-
-  }
-  
-  fieldset {
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #b4b2b2;
-    padding: 1em;
-    border-radius: 8px;
-    width: 400px;
-  }
-  
-  legend {
-    font-weight: bold;
-  }
-  
-  fieldset button, input {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-  }
-  
-  fieldset button:hover {
-    background-color: #b4b2b2;
-    font-weight: bold;
-  }
-  fieldset input{
-    border-left: 5px solid red;
-  }
-
-  fieldset input:hover {
-    border-left: 1px solid black;
-    border-bottom: 5px solid black; 
-    border-right: 5px solid black; 
-    
-    
-      /* border-color: #555;   */
-  }
-
-  fieldset label, p {
-    margin-left: 5px;
-  }
-  
-  #no-account {
-    padding: 10px;
-    margin: 10px;
-  }
-  
-  #no-account a:hover {
-    font-weight: bold;
-  }
   </style>
 
 <script>
+
+
+
+
     const togglePasswordBtn = document.getElementById("btn-show-password");
     const passwordInput = document.getElementById("password");
   
@@ -114,4 +64,5 @@
       // Update button text
       togglePasswordBtn.textContent = type === "password" ? "Show Password" : "Hide Password";
     });
+
   </script>
