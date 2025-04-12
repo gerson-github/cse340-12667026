@@ -1,0 +1,62 @@
+<!-- * **************************************
+* Header
+* ************************************  -->
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Page Not Found</h1>
+<% } %>
+
+<%- messages() %>
+<span><% errors%></span>
+<% if (errors && errors.length > 0) { %>
+  <div class="bg-red-100 text-red-800 p-4 rounded mb-4">
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<form id="registerForm" class="formulario" action="/inv/add-classification" method="post">
+  <fieldset>
+    <legend >Classification Name</legend>
+    <h5>(Name must be Alphabetic Characters Only.)</h5>
+    <input
+        type="text"
+        id="classification_name"
+        name="classification_name"
+        pattern="^[A-Za-z0-9]+$"
+        required
+        title="Only letters and numbers, no spaces or special characters"
+        value="<%= typeof classification_name != 'undefined' ? classification_name : '' %>"
+    >
+    <!-- <sub>Field is Required</sub> -->
+    <button id="button-classification" type="submit">Add Classification</button>
+  </fieldset>
+</form>
+
+
+ <style>
+
+  fieldset h5 {
+    margin: 0;
+  }
+  #classification_name, #button-classification {
+    margin-top: 35px;
+  }
+  fieldset sub {
+    text-align: left;
+    padding-left: 10px;
+  }
+
+</style>
+
+
+
+
+
+
+
+

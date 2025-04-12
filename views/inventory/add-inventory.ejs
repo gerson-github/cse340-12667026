@@ -1,0 +1,78 @@
+<!-- * **************************************
+* Header
+* ************************************  -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <h1>Page Not Found</h1>
+<% } %>
+
+<%- messages() %>
+
+<form id="addInventoryForm" class="formulario" action="/inv/add-inventory" method="post" >
+  <fieldset id="new-inventory-fieldset">
+    <label for="classificationList">Classification</label>
+    <Select id="classification">
+      <option value="" disabled>Choose a Classifation</option>
+      <option value="">Tipo A</option>
+      <option value="">Tipo B</option>
+      <option value="">Tipo C</option>
+    </Select>
+
+    <label for="make">Make</label>
+    <input type="text" id="make" name="make" required value="<%= typeof make != 'undefined' ? make : '' %>" placeholder="Min of 3 characters">
+  
+    <label for="model">Model</label>
+    <input type="text" id="model" name="model" required value="<%= typeof model != 'undefined' ? model : '' %>" placeholder="Min of 3 characters">
+  
+    <label for="description">Description</label>
+    <textarea id="description" rows="3"  name="description" required><%= typeof description != 'undefined' ? description : '' %></textarea>
+  
+    <label for="image">Image Path</label>
+    <input type="text" id="image" name="image" required value="<%= typeof image != 'undefined' ? image : '/images/vehicles/no-image.png' %>">
+  
+    <label for="thumbnail">Thumbnail Path</label>
+    <input type="text" id="thumbnail" name="thumbnail" required value="<%= typeof thumbnail != 'undefined' ? thumbnail : '/images/vehicles/no-image.png' %>">
+  
+    <label for="price">Price</label>
+    <input type="number" id="price" name="price" required min="0" step="0.01" value="<%= typeof price != 'undefined' ? price : '' %>"  placeholder="decimal or integer">
+  
+    <label for="year">Year</label>
+    <input type="number" id="year" name="year" required min="1900" max="2100" value="<%= typeof year != 'undefined' ? year : '' %>" placeholder="4-digit year">
+  
+    <label for="miles">Miles</label>
+    <input type="number" id="miles" name="miles" required min="0" value="<%= typeof miles != 'undefined' ? miles : '' %>" placeholder="digits only">
+  
+    <label for="color">Color</label>
+    <input type="text" id="color" name="color" required value="<%= typeof color != 'undefined' ? color : '' %>">
+  
+    <button type="submit">Add Vehicle</button>
+  </fieldset>
+</form>  
+  
+  
+<style>
+  #new-inventory-fieldset {
+    width: 60%;
+  }
+  #new-inventory-fieldset #classification {
+    width: 40%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+  #new-inventory-fieldset #make, #model, #color {
+    width: 60%;
+  }
+  #new-inventory-fieldset #image, #thumbnail {
+    width: 70%;
+  }
+  #new-inventory-fieldset #price, #miles, #year {
+    width: 20%;
+  }
+  #new-inventory-fieldset button {
+    margin-top: 25px;
+  }
+</style>  
+
+

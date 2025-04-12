@@ -53,4 +53,97 @@ invCont.getVehicleDetail = async function (req, res, next) {
   }
 };
 
+/* 
+  Management view
+*/
+invCont.getManagement = async function (req, res, next) {
+  try {
+      
+    let nav = await utilities.getNav();
+
+    res.render("./inventory/management", {
+      title: "Vehicle Management",
+      nav,
+      
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* 
+  Show Classification view
+*/
+invCont.showAddClassificationForm = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add New Classification",
+    nav,
+    message: req.flash("message"),
+    errors: null,
+  })
+}
+
+/* 
+ add classification to the database
+*/
+invCont.addClassification = async function (req, res, next) {
+  const { classification_name } = req.body
+  const nav = await utilities.getNav()
+
+  try {
+    const result = await invModel.addClassification(classification_name)
+    if (result) {
+      req.flash("notice", "New classification added successfully!")
+      res.redirect("/inv")
+    } else {
+      req.flash("message", "Failed to add classification.")
+      res.redirect("/inv/add-classification")
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+/* 
+  Show Inventory view
+*/
+invCont.showAddInventoryForm = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  res.render("./inventory/add-inventory", {
+    title: "Add New Inventory",
+    nav,
+    message: req.flash("message"),
+    errors: null,
+  })
+}
+
+
+/* 
+ add inventory to the database
+*/
+invCont.addInventory = async function (req, res, next) {
+  const { inventory_name } = req.body
+  const nav = await utilities.getNav()
+
+  try {
+    const result = await invModel.addInventory(inventory_name)
+    if (result) {
+      req.flash("message", "New inventory added successfully!")
+      res.redirect("/inv")
+    } else {
+      req.flash("message", "Failed to add inventory.")
+      res.redirect("/inv/add-inventory")
+    }
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+
+
+
+
 module.exports = invCont

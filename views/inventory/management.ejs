@@ -1,0 +1,41 @@
+<!-- * **************************************
+* Header
+* ************************************  -->
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <h1>Page Not Found</h1>
+<% } %>
+
+
+<%- messages() %>
+
+
+
+<ul>
+  <li><a href="/inv/add-classification">Add New Classification</a></li>
+  <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+</ul>
+
+<style>
+  ul {
+    margin: 0;
+    padding: 50px;
+    font-size:  20px;
+  }
+
+
+  ul li a:hover {
+    font-weight: bold;
+  }
+
+
+</style>
+
+
+
+
+
+
+
+
