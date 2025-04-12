@@ -11,18 +11,22 @@
 
 <form class="formulario" action="/account/login" method="post">
     <fieldset>
-    <legend>Crendentials</legend>
-    <label for="email-address">Email Address</label>
-    <input type="email" name="account_email" id="email-address" required>
-    <label for="password">Password</label>
-    <input id="password" name="account_password" type="password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])" minlength="12" maxlength="20" required>
-    <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
-    <button id="btn-show-password" type="button"> Show Password</button>
-    <button id="login" type="submit">Login</button>
+      <legend>All Fields are Required</legend>
+      <label for="account-firstname">First name:</label>
+      <input type="text" name="account_firstname" id="account-firstname" required>
+      <label for="account-lastname">Last name:</label>
+      <input type="text" name="account_lastname" id="account-lastname" required>
+      <label for="email-address">Email Address</label>
+      <input type="email" name="account_email" id="email-address" required>
+      <label for="password">Password</label>
+      <input id="password" name="account_password" type="password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])" minlength="12" maxlength="20" required>
+      <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
+      <button id="btn-show-password" type="button"> Show Password</button>
+      <button id="login" type="submit">Register</button>
     </fieldset>
-    <label id="no-account" for="sing-up">No account? <a  id="sing-up" href="/account/register">Sing up</a></label>
+    
 </div>
-   
+  
 
 
 <style>
