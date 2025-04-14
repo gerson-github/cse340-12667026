@@ -105,45 +105,47 @@ invCont.addClassification = async function (req, res, next) {
   }
 }
 
-
 /* 
-  Show Inventory view
+  Show Vehicle-Inventory view
 */
 invCont.showAddInventoryForm = async function (req, res, next) {
   const nav = await utilities.getNav()
+  const classificationList = await utilities.buildClassificationList()
   res.render("./inventory/add-inventory", {
-    title: "Add New Inventory",
+    title: "Add New Vehicle",
     nav,
+    classificationList,
     message: req.flash("message"),
     errors: null,
   })
 }
 
-
 /* 
- add inventory to the database
+ add vehicle-inventory to the database
 */
 invCont.addInventory = async function (req, res, next) {
-  const { inventory_name } = req.body
   const nav = await utilities.getNav()
-
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body
   try {
-    const result = await invModel.addInventory(inventory_name)
+    const result = await invModel.addInventory(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
     if (result) {
-      req.flash("message", "New inventory added successfully!")
+      req.flash("notice", "New inventory added successfully!")
       res.redirect("/inv")
     } else {
-      req.flash("message", "Failed to add inventory.")
-      res.redirect("/inv/add-inventory")
+
+      const classificationList = await utilities.buildClassificationList(classification_id)
+      req.flash("notice", "Failed to add inventory.")
+      // res.redirect("/inv/add-inventory")
+      res.render("inventory/add-inventory", {
+        title: "Add New Vehicle",
+        nav,
+        classificationList,
+        message: req.flash("message"),
+     
+      })
     }
   } catch (error) {
     next(error)
   }
 }
-
-
-
-
-
-
 module.exports = invCont

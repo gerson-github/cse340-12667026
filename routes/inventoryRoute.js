@@ -32,12 +32,13 @@ router.post(
   invController.addClassification
 )
 
-// inventory view
+// Vehicle-inventory view
 router.get("/add-inventory", invController.showAddInventoryForm)
+// handle Post
 router.post(
   "/add-inventory", 
-  //inventoryValidate.inventoryRules(),
-  //inventoryValidate.checkInventoryData,
+   inventoryValidate.vehiclesRules(),
+   inventoryValidate.checkVehicleData,
   invController.addInventory
 )
 
