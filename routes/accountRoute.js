@@ -11,11 +11,24 @@ const accountController = require("../controllers/accountController")
 const utilities = require("../utilities")
 const regValidate = require('../utilities/account-validation')
 
+
 /* *******
 * Deliver Login View
 * Unit 4, deliver login view
 */
 router.get("/login", utilities.handleErrors(accountController.buildLogin ))
+
+/* 
+ Login process activity
+*/
+router.post(
+    "/login",
+    //regValidate.loginRules(),
+    //regValidate.checkLoginData,
+    utilities.handleErrors(accountController.accountLogin)
+  )
+
+
 
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
@@ -25,6 +38,10 @@ router.post(
     regValidate.checkRegData,
     utilities.handleErrors(accountController.registerAccount)
 )
+
+
+// ✅ Default account management route
+router.get("/", utilities.handleErrors(accountController.buildAccountManagement))
 
 
 module.exports = router;

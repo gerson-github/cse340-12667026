@@ -15,7 +15,7 @@
     <label for="email-address">Email Address</label>
     <input type="email" name="account_email" id="email-address" required>
     <label for="password">Password</label>
-    <input id="password" name="account_password" type="password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])" minlength="12" maxlength="20" required>
+    <input id="password" name="account_password" type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{12,20}$" minlength="12" maxlength="20" required>
     <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
     <button id="btn-show-password" type="button"> Show Password</button>
     <button id="login" type="submit">Login</button>

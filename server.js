@@ -7,7 +7,6 @@
  *************************/
 const express = require("express")
 const env = require("dotenv").config()
-const app = express()
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 const baseController = require("./controllers/baseController")
@@ -18,6 +17,9 @@ const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 const messages = require('express-messages')
+const cookieParser = require("cookie-parser")
+
+const app = express()
 
 /* ***********************
  * Middleware - criou um cook e tambem gravou no banco de dados
@@ -32,6 +34,8 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+
 
 // app.use(flash())
 
@@ -54,6 +58,17 @@ app.use(function(req, res, next){
  * ************************/
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) 
+
+/* ***********************
+ * Middleware - for parsing login acitity
+ * ************************/
+app.use(cookieParser())
+
+/* ***********************
+// JWT token Middleware 
+* ************************/
+app.use(utilities.checkJWTToken)
+
 
 /* ***********************
  * Routes
