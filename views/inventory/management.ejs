@@ -7,15 +7,24 @@
   <h1>Page Not Found</h1>
 <% } %>
 
-
 <%- messages() %>
-
-
 
 <ul>
   <li><a href="/inv/add-classification">Add New Classification</a></li>
   <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
 </ul>
+
+<div id="mng-details">
+  <h2>Manage Inventory</h2>
+  <p>Choose a Classification to see those inventory items.</p>
+  <%- classificationSelect %>
+
+  <table id="inventoryDisplay"></table>
+
+  <noscript>JavaScript must be enabled to use this page.</noscript>
+</div>
+
+<script src="../../js/inventory.js"></script>
 
 <style>
   ul {
@@ -23,11 +32,72 @@
     padding: 50px;
     font-size:  20px;
   }
-
-
   ul li a:hover {
     font-weight: bold;
   }
+  #mng-details h2, p, select {
+    margin: 10px;
+  }
+  #mng-details p, select, table {
+    font-size: 16px;
+  }
+  #mng-details table {
+    margin-left: 10px;
+  }
+  #mng-details select {
+    width: 20%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  #inventoryDisplay {
+  width: 30%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+#inventoryDisplay th {
+  background-color: #444;
+  color: #fff;
+}
+
+#inventoryDisplay td:first-child {
+  width: 280px;
+}
+
+#inventoryDisplay td:nth-child(2),
+#inventoryDisplay td:nth-child(3) {
+  width: 10px;
+  text-align: center;
+}
+
+/* Alternating row colors */
+#inventoryDisplay tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #e0e0e0;
+}
+
+#inventoryDisplay a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover {
+  text-decoration: underline;
+}
 
 
 </style>

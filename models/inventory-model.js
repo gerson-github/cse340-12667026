@@ -75,5 +75,25 @@ async function addInventory(inv_make, inv_model, inv_year, inv_description, inv_
     return error.message
   }
 }
+/*
+ get classification name by Id
+*/
+async function getInventoryByClassificationId(classification_id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM inventory AS i 
+       JOIN classification AS c 
+       ON i.classification_id = c.classification_id 
+       WHERE i.classification_id = $1`,
+      [classification_id]
+    );
+    return data.rows;
+  } catch (error) {
+    console.error("getInventoryByClassificationId error: " + error);
+  }
+}
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById, addClassification, addInventory};
+
+
+
+module.exports = {getClassifications, getInventoryByClassificationId, getVehicleById, addClassification, addInventory, getInventoryByClassificationId};
