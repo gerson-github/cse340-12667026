@@ -1,0 +1,70 @@
+<!-- * **************************************
+* Header
+* ************************************  -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <h1>Page Not Found</h1>
+<% } %>
+
+<%- messages() %>
+<span><% errors%></span>
+<% if (errors && errors.length > 0) { %>
+  <div class="bg-red-100 text-red-800 p-4 rounded mb-4">
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+<p>Confirm Deletion - The deletin is permanent.</p>
+<form id="addInventoryForm" class="formulario" action="/inv/delete" method="post" >
+  <fieldset id="new-inventory-fieldset">
+   
+    <label for="make">Make</label>
+    <input readonly type="text" id="make" name="inv_make" required value="<%= typeof inv_make != 'undefined' ? inv_make : '' %>" placeholder="Min of 3 characters">
+  
+    <label for="model">Model</label>
+    <input readonly type="text" id="model" name="inv_model" required value="<%= typeof inv_model != 'undefined' ? inv_model : '' %>" placeholder="Min of 3 characters">
+
+    <label for="price">Price</label>
+    <input readonly type="number" id="price" name="inv_price" required min="0" step="0.01" value="<%= typeof inv_price != 'undefined' ? inv_price : '' %>"  placeholder="decimal or integer">
+  
+    <label for="year">Year</label>
+    <input readonly type="number" id="year" name="inv_year" required min="1900" max="2100" value="<%= typeof inv_year != 'undefined' ? inv_year : '' %>" placeholder="4-digit year">
+    
+    <button type="submit">Delete Item</button>
+
+    <input type="hidden" name="inv_id" value="<%= typeof inv_id !== 'undefined' ? inv_id : '' %>">
+
+
+  </fieldset>
+</form>  
+  
+  
+<style>
+  #new-inventory-fieldset {
+    width: 60%;
+  }
+  #new-inventory-fieldset #classificationList {
+    width: 40%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+  }
+  #new-inventory-fieldset #make, #model, #color {
+    width: 60%;
+  }
+  #new-inventory-fieldset #image, #thumbnail {
+    width: 70%;
+  }
+  #new-inventory-fieldset #price, #miles, #year {
+    width: 20%;
+  }
+  #new-inventory-fieldset button {
+    margin-top: 25px;
+  }
+</style>  
+
+

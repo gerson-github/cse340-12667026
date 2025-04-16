@@ -48,5 +48,32 @@ router.post(
 */
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+/* ***************************
+ * Route to deliver edit inventory view
+  ***************************/
+router.get(
+  "/edit/:inv_id",
+  utilities.handleErrors(invController.editInventoryView)
+);
+/* handle is not shown*/
+//router.post("/update/", invController.updateInventory) //invValidate.newInventoryRules(),
+router.post(
+  "/edit-inventory",
+  inventoryValidate.vehiclesRules(),
+  inventoryValidate.checkUpdateData,
+  invController.updateInventory
+)
+
+/* 
+ Route to deliver Delete Item view
+*/
+router.get (
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.deleteView)
+)
+/* 
+ Process te delete inventory request
+*/
+router.post("/delete", utilities.handleErrors(invController.deleteInventory))
 
 module.exports = router;
