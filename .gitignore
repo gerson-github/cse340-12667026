@@ -25,4 +25,7 @@ pnpm-lock.yaml
 ggserver.js
 gserver.js
 report validator.zip
-mySql.mySql
+mySql.sql
+settings.json
+assignment2.sql
+db_script.sql
