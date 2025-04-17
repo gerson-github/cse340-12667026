@@ -146,9 +146,26 @@ Util.checkJWTToken = (req, res, next) => {
 //   }
 // }
 
+/* ****************************************
+ * Middleware para proteger rotas privadas
+ **************************************** */
+Util.checkLogin = function (req, res, next) {
+  const token = req.cookies.jwt
+  if (!token) {
+    req.flash("notice", "Please log in to access this page.")
+    return res.redirect("/account/login")
+  }
 
-
-module.exports = Util
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+    req.accountData = decoded // opcional: guardar os dados do usuário para uso futuro
+    next()
+  } catch (err) {
+    console.log("JWT verification failed:", err.message)
+    req.flash("notice", "Session expired or invalid. Please log in again.")
+    return res.redirect("/account/login")
+  }
+}
 
 /* ****************************************
  * Middleware For Handling Errors
@@ -156,4 +173,7 @@ module.exports = Util
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+
+module.exports = Util
 

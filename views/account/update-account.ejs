@@ -1,0 +1,148 @@
+<!-- * **************************************
+* Header
+* ************************************  -->
+<% if (errors && errors.length > 0) { %>
+    <div class="error-box">
+      <ul>
+        <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+  
+  <% if (messages && messages.length > 0) { %>
+    <div class="flash-message">
+      <ul>
+        <% messages.forEach(msg => { %>
+          <li><%= msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+  
+  <h1><%= title %></h1>
+  
+  <!-- ============ Account Info Update Form ============ -->
+  
+  <!-- ============ Account Info Update Form ============ -->
+<form action="/account/update" method="post">
+    <fieldset>
+      <legend>Account Information</legend>
+  
+      <label for="account_firstname">First Name:</label>
+      <input type="text" id="account_firstname" name="account_firstname" required 
+             value="<%= typeof account_firstname != 'undefined' ? account_firstname : account.account_firstname %>">
+  
+      <label for="account_lastname">Last Name:</label>
+      <input type="text" id="account_lastname" name="account_lastname" required 
+             value="<%= typeof account_lastname != 'undefined' ? account_lastname : account.account_lastname %>">
+  
+      <label for="account_email">Email:</label>
+      <input type="email" id="account_email" name="account_email" required 
+             value="<%= typeof account_email != 'undefined' ? account_email : account.account_email %>">
+  
+      <input type="hidden" name="account_id" value="<%= account.account_id %>">
+  
+      <button type="submit">Update Info</button>
+    </fieldset>
+  </form>
+  
+  <!-- ============ Password Update Form ============ -->
+  <p>
+    Enter a new password to change your current one. Passwords must be at least 12 characters and contain a number, an uppercase letter, and a special character.
+  </p>
+  
+  <form action="/account/change-password" method="post">
+    <fieldset>
+      <legend>Change Password</legend>
+  
+      <label for="account_password">New Password:</label>
+      <input type="password" id="account_password" name="account_password" required 
+             pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{12,20}$" minlength="12" maxlength="20"
+             title="Password must be at least 12 characters, with a number, a special character, and an uppercase letter.">
+  
+      <input type="hidden" name="account_id" value="<%= account.account_id %>">
+  
+      <button type="submit">Change Password</button>
+    </fieldset>
+  </form>
+  
+
+
+  <style>
+    form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+legend {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 0.8rem 0 0.3rem;
+  color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+button[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+p {
+  max-width: 600px;
+  margin: 1rem auto;
+  padding: 0 2rem;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+  </style>

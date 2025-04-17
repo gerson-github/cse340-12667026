@@ -46,5 +46,21 @@ router.get("/", utilities.handleErrors(accountController.buildAccountManagement)
 // Essa e Route do logout
 router.get("/logout", accountController.logout)
 
+// rotas para alterar senha e cadastro de usuario regValidate.passwordRules
+router.get("/update/:account_id",   utilities.checkLogin, accountController.showUpdateForm)
+router.post(
+  "/update", 
+  utilities.checkLogin, 
+  regValidate.accountUpdateRules(), 
+  regValidate.checkAccountUpdateData, 
+  accountController.updateAccountInfo)
+
+router.post(
+  "/change-password", 
+  utilities.checkLogin, 
+  regValidate.passwordRules(), 
+  regValidate.checkPasswordData, 
+  accountController.changePassword)
+
 
 module.exports = router;

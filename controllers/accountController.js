@@ -181,4 +181,73 @@ function logout(req, res) {
   })
 }
 
-module.exports =  {buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, logout}
+async function showUpdateForm(req, res) {
+  let nav = await utilities.getNav()
+  const account_id = req.params.account_id
+  const account = await accountModel.getAccountById(account_id)
+
+  res.render("account/update-account", {
+    title: "Update Account",
+    nav,
+    account,
+    errors: null,
+    messages: req.flash("notice"),
+  })
+}
+
+async function updateAccountInfo(req, res) {
+  let nav = await utilities.getNav()
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+
+  const updateResult = await accountModel.updateAccount(account_firstname, account_lastname, account_email, account_id)
+
+  if (updateResult) {
+    req.flash("notice", "Account information updated successfully.")
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Failed to update account info.")
+    res.status(500).render("account/update-account", {
+      title: "Update Account",
+      nav,
+      account: await accountModel.getAccountById(account_id),
+      account_firstname,
+      account_lastname,
+      account_email,
+      errors: null,
+      messages: req.flash("notice"),
+    })
+  }
+}
+
+//const bcrypt = require("bcrypt")
+
+async function changePassword(req, res) {
+  let nav = await utilities.getNav()
+  const { account_password, account_id } = req.body
+
+  try {
+    //const hashedPassword = await bcrypt.hash(account_password, 10)
+    const hashedPassword = account_password
+    const updateResult = await accountModel.updatePassword(hashedPassword,account_id)
+
+    if (updateResult) {
+      req.flash("notice", "Password updated successfully.")
+      res.redirect("/account/")
+    } else {
+      throw new Error("Update failed")
+    }
+  } catch (error) {
+    req.flash("notice", "Error updating password.")
+    res.status(500).render("account/update-account", {
+      title: "Update Account",
+      nav,
+      account: await accountModel.getAccountById(account_id),
+      errors: null,
+      messages: req.flash("notice"),
+    })
+  }
+}
+
+
+
+module.exports =  {buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, logout, showUpdateForm, updateAccountInfo, changePassword}
