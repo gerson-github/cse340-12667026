@@ -40,8 +40,11 @@ router.post(
 )
 
 
-// ✅ Default account management route
+// Default account management route
 router.get("/", utilities.handleErrors(accountController.buildAccountManagement))
+
+// Essa e Route do logout
+router.get("/logout", accountController.logout)
 
 
 module.exports = router;

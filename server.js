@@ -35,6 +35,15 @@ app.use(session({
   name: 'sessionId',
 }))
 
+/* 
+ maninupla o login da tela
+ This makes loggedin and firstname available in every EJS view without having to manually pass them in every res.render()
+*/
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session.loggedin
+  res.locals.firstname = req.session.firstname
+  next()
+})
 
 
 // app.use(flash())
