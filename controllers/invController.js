@@ -86,7 +86,7 @@ invCont.getManagement = async function (req, res, next) {
 };
 
 /* 
-  Show Classification view
+  Show add Classification view
 */
 invCont.showAddClassificationForm = async function (req, res, next) {
   const nav = await utilities.getNav()

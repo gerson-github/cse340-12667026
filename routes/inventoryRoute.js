@@ -12,68 +12,39 @@ const router = new express.Router()
 const invController = require("../controllers/invController")
 const inventoryValidate  = require('../utilities/inventory-validation')
 const utilities = require("../utilities/")
+const checkAccountType = require('../utilities/checkAccountType')
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
+router.get("/type/:classificationId", checkAccountType(["Admin","Client"]), invController.buildByClassificationId);
+router.get("/detail/:inv_id", checkAccountType(["Admin","Client"]), invController.getVehicleDetail); // route to build vehicle detail view
 
-// route to build vehicle detail view
-router.get("/detail/:inv_id", invController.getVehicleDetail);
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))  /*  get inventory for AJAX route*/
 
-// route to management view
-router.get("/", invController.getManagement)
+//ADMIN Only routes (proteted)
+
+// route to management view - Exite a tela de Gerenciamento de veiculo
+router.get("/", checkAccountType(["Admin"]), invController.getManagement)
 
 // Show Form Classification view
-router.get("/add-classification", invController.showAddClassificationForm)
-
-// handle Post
-router.post(
-  "/add-classification", 
-   inventoryValidate.classificationRules(),
-   inventoryValidate.checkClassificationData,
-  invController.addClassification
-)
+router.get("/add-classification", checkAccountType(["Admin"]), invController.showAddClassificationForm)
+router.post("/add-classification", checkAccountType(["Admin"]), inventoryValidate.classificationRules(), inventoryValidate.checkClassificationData, invController.addClassification)
 
 // Vehicle-inventory view
-router.get("/add-inventory", invController.showAddInventoryForm)
-// handle Post
-router.post(
-  "/add-inventory", 
-   inventoryValidate.vehiclesRules(),
-   inventoryValidate.checkVehicleData,
-  invController.addInventory
-)
-
-/*
- get inventory for AJAX route
-*/
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/add-inventory", checkAccountType(["Admin"]), invController.showAddInventoryForm)
+router.post("/add-inventory", checkAccountType(["Admin"]), inventoryValidate.vehiclesRules(), inventoryValidate.checkVehicleData, invController.addInventory)
 
 /* ***************************
  * Route to deliver edit inventory view
   ***************************/
-router.get(
-  "/edit/:inv_id",
-  utilities.handleErrors(invController.editInventoryView)
-);
-/* handle is not shown*/
-//router.post("/update/", invController.updateInventory) //invValidate.newInventoryRules(),
-router.post(
-  "/edit-inventory",
-  inventoryValidate.vehiclesRules(),
-  inventoryValidate.checkUpdateData,
-  invController.updateInventory
-)
+router.get("/edit/:inv_id", checkAccountType(["Admin"]), utilities.handleErrors(invController.editInventoryView));
+router.post("/edit-inventory", checkAccountType(["Admin"]), inventoryValidate.vehiclesRules(), inventoryValidate.checkUpdateData, invController.updateInventory)
 
 /* 
  Route to deliver Delete Item view
 */
-router.get (
-  "/delete/:inv_id",
-  utilities.handleErrors(invController.deleteView)
-)
-/* 
- Process te delete inventory request
-*/
-router.post("/delete", utilities.handleErrors(invController.deleteInventory))
+router.get ("/delete/:inv_id", checkAccountType(["Admin"]), utilities.handleErrors(invController.deleteView))
+router.post("/delete", checkAccountType(["Admin"]), utilities.handleErrors(invController.deleteInventory))
+
+
 
 module.exports = router;

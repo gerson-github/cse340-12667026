@@ -117,20 +117,41 @@ async function accountLogin(req, res) {
       
       console.log("*** Deu POSITIVO **")
 
+
+      console.log(" ***** >>>  aqui o decoded")
+      console.log(accountData)
+
       delete accountData.account_password
-      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      const accessToken = jwt.sign(
+        accountData
+        , process.env.ACCESS_TOKEN_SECRET
+        , 
+        { expiresIn: 3600 * 1000 })
 
       req.session.loggedin = true
       req.session.accountId = accountData.account_id
       req.session.firstname = accountData.account_firstname
       req.session.lastname = accountData.account_lastname
       req.session.email = accountData.account_email
+      req.session.account_type = accountData.account_type 
+
+
+      console.log(" ***** >>>  STEP1")
+
 
       if(process.env.NODE_ENV === 'development') {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+
+        console.log(" ***** >>>  STEP2")
+
       } else {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+
+
+        console.log(" ***** >>>  STEP3")
       }
+
+      console.log(" ***** >>>  STEP4")
 
       return res.redirect("/account/")
 
