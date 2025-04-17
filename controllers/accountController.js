@@ -20,6 +20,7 @@ require("dotenv").config()
 */
 async function buildLogin(req,res,next) {
   let nav = await utilities.getNav()
+  
   res.render("account/login", {
     title: "Login",
     nav,
@@ -46,13 +47,24 @@ async function buildRegister(req,res,next) {
 async function buildAccountManagement(req,res,next) {
   let nav = await utilities.getNav()
 
-  //res.redirect("/")
+  const token = req.cookies.jwt
+  //const decoded = utilities.decodeJWT(token) 
+   const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
 
-   res.render("account/account-management", {
-     title: "Login",
-     nav,
-     errors: null,
-   })
+  res.render("account/account-management", {
+    title: "Account Management",
+    nav,
+    errors: null,
+    account_firstname: decoded.account_firstname,
+    account_id: decoded.account_id,
+    account_type: decoded.account_type,
+  })
+
+  //  res.render("account/account-management", {
+  //    title: "Login",
+  //    nav,
+  //    errors: null,
+  //  })
   
 }
 
@@ -118,9 +130,6 @@ async function accountLogin(req, res) {
       console.log("*** Deu POSITIVO **")
 
 
-      console.log(" ***** >>>  aqui o decoded")
-      console.log(accountData)
-
       delete accountData.account_password
       const accessToken = jwt.sign(
         accountData
@@ -134,24 +143,15 @@ async function accountLogin(req, res) {
       req.session.lastname = accountData.account_lastname
       req.session.email = accountData.account_email
       req.session.account_type = accountData.account_type 
-
-
-      console.log(" ***** >>>  STEP1")
-
+ 
 
       if(process.env.NODE_ENV === 'development') {
         res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
 
-        console.log(" ***** >>>  STEP2")
-
       } else {
         res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
-
-
-        console.log(" ***** >>>  STEP3")
+  
       }
-
-      console.log(" ***** >>>  STEP4")
 
       return res.redirect("/account/")
 

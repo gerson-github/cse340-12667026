@@ -137,6 +137,14 @@ Util.checkJWTToken = (req, res, next) => {
   }
  }
 
+//  Util.decodeJWT = async function (token = null) {
+//   try {
+//     return jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+//   } catch (err) {
+//     console.error("Invalid token:", err)
+//     return null
+//   }
+// }
 
 
 

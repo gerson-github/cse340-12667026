@@ -9,7 +9,20 @@
 
 <%- messages() %>
 
-
-
+<h2>Welcome : <%= account_firstname %></h2>
 
 <p>You're logged in.</p>
+
+<!-- Update Account Link (visible to all types) -->
+<p>
+  <a href="/account/update/<%= account_id %>">Update Account Information</a>
+</p>
+
+<!-- Only for Employee and Admin -->
+<% if (account_type === "Employee" || account_type === "Admin") { %>
+  <h3>Inventory Management</h3>
+  <p><a href="/inv/">Manage Inventory</a></p>
+<% } %>
+
+
+

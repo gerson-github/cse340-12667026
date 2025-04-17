@@ -36,14 +36,14 @@ router.post("/add-inventory", checkAccountType(["Admin","Employee"]), inventoryV
 /* ***************************
  * Route to deliver edit inventory view
   ***************************/
-router.get("/edit/:inv_id", checkAccountType(["Admin","Employee"]), utilities.handleErrors(invController.editInventoryView));
-router.post("/edit-inventory", checkAccountType(["Admin","Employee"]), inventoryValidate.vehiclesRules(), inventoryValidate.checkUpdateData, invController.updateInventory)
+router.get("/edit/:inv_id", checkAccountType(["Admin"]), utilities.handleErrors(invController.editInventoryView));
+router.post("/edit-inventory", checkAccountType(["Admin"]), inventoryValidate.vehiclesRules(), inventoryValidate.checkUpdateData, invController.updateInventory)
 
 /* 
  Route to deliver Delete Item view
 */
-router.get ("/delete/:inv_id", checkAccountType(["Admin","Employee"]), utilities.handleErrors(invController.deleteView))
-router.post("/delete", checkAccountType(["Admin","Employee"]), utilities.handleErrors(invController.deleteInventory))
+router.get ("/delete/:inv_id", checkAccountType(["Admin"]), utilities.handleErrors(invController.deleteView))
+router.post("/delete", checkAccountType(["Admin"]), utilities.handleErrors(invController.deleteInventory))
 
 
 
