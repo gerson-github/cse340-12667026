@@ -46,13 +46,13 @@ async function buildRegister(req,res,next) {
 async function buildAccountManagement(req,res,next) {
   let nav = await utilities.getNav()
 
-  res.redirect("/")
+  //res.redirect("/")
 
-  // res.render("account/account-management", {
-  //   title: "Login",
-  //   nav,
-  //   errors: null,
-  // })
+   res.render("account/account-management", {
+     title: "Login",
+     nav,
+     errors: null,
+   })
   
 }
 

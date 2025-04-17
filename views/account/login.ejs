@@ -11,25 +11,41 @@
 
 <form class="formulario" action="/account/login" method="post">
     <fieldset>
-    <legend>Crendentials</legend>
-    <label for="email-address">Email Address</label>
-    <input type="email" name="account_email" id="email-address" required>
-    <label for="password">Password</label>
-    <input id="password" name="account_password" type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{12,20}$" minlength="12" maxlength="20" required>
-    <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
-    <button id="btn-show-password" type="button"> Show Password</button>
-    <button id="login" type="submit">Login</button>
+        <legend>Crendentials</legend>
+        <label for="email-address">Email Address</label>
+        <input type="email" name="account_email" id="email-address" required>
+        <label for="password">Password</label>
+        <input id="password" name="account_password" type="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{12,20}$" minlength="12" maxlength="20" required>
+        <p>Passwords must be minimun of 12 characters and include 1 capital letter, 1 number and 1 special character.</p>
+        <button id="btn-show-password" type="button"> Show Password</button>
+        <button id="login" type="submit">Login</button>
 
-    <h5>Admin:   admin@csemotors.ca       pass: PassWord@1234</h5>
-    <h5>Client:  client@csemotors.ca      pass: PassWord@1234</h5>
+        <fieldset id="fieldset-dev">
+            <legend>Short Cut Credentials</legend>
+            <p class="p-short-cut"><a href="#" data-email="admin@csemotors.ca" data-pass="PassWord@1234">Admin</a></p>
+            <p class="p-short-cut"><a href="#" data-email="employee@csemotors.ca" data-pass="PassWord@1234">Employee</a></p>
+            <p class="p-short-cut"><a href="#" data-email="client@csemotors.ca" data-pass="PassWord@1234">Client</a></p>
+        </fieldset>
 
     </fieldset>
     <label id="no-account" for="sing-up">No account? <a  id="sing-up" href="/account/register">Sing up</a></label>
 </div>
    
 <style>
-    .formulario h5 {
+    .formulario a {
         margin: 10px;
+    }
+    .p-short-cut {
+        margin: 0;
+        padding: 0;
+    }
+    .formulario a:hover {
+        font-weight: bold;
+    }
+
+    #fieldset-dev {
+        font-size: 9px;
+        margin-top: 30px;
     }
 </style>
 
@@ -45,4 +61,17 @@
       // Update button text
       togglePasswordBtn.textContent = type === "password" ? "Show Password" : "Hide Password";
     });
+
+    document.querySelectorAll('.p-short-cut a').forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault()
+      const email = this.getAttribute('data-email')
+      const password = this.getAttribute('data-pass')
+
+      document.querySelector('#email-address').value = email
+      document.querySelector('#password').value = password
+    })
+  })
+
+
   </script>
