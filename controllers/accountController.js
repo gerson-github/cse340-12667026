@@ -10,7 +10,7 @@ const utilities = require("../utilities")
 const accountModel = require("../models/account-model")
 const accountController = {}
 const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
+//const bcrypt = require("bcrypt")
 
 require("dotenv").config()
 
