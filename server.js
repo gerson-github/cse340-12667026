@@ -18,6 +18,9 @@ const pool = require('./database/')
 const bodyParser = require("body-parser")
 const messages = require('express-messages')
 const cookieParser = require("cookie-parser")
+const partsRoute = require("./routes/partsRoute")
+
+
 
 const app = express()
 
@@ -89,15 +92,14 @@ app.set("layout", "./layouts/layout") // not at views root
 
 
 //index route
-// app.get('/', (req, res) => {
-//   console.log('user hit the resource')
-//   res.render("index", {title:"home"})
-//   //res.status(200).send('Home Page')
-// })
-//app.get("/", baseController.buildHome) 
 app.get("/", utilities.handleErrors(baseController.buildHome)) // executa 1
 app.use("/inv", inventoryRoute)  // executa 2
 app.use("/account", accountRoute)  // executa 3
+app.use("/parts", partsRoute)
+
+
+
+
 
 // Catch-all route for invalid URLs (404 Not Found)
 app.use((req, res, next) => {
