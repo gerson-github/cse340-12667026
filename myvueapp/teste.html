@@ -4,9 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product App</title>
-    <script src="./js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
-    <h1>Product goes here</h1>
+    <div id="app">
+        <h1> {{ product }} Product goes here</h1>
+        
+        <div class="product-image">
+            <img v-bind:src="image">
+            <p v-if="inStock">In Stock</p>
+            <img v-show="inStock"  v-bind:src="pijama">
+            <p v-else>Out of Stock</p>
+            <p v-if="inventory > 10">qtde em estoque</p>
+            <p v-else-if="inventory <=10 && inventory > 5">quase sem estoque</p>
+            <p v-else>sem estoque</p>
+        </div>
+        
+        <input type="text" v-model="product" placeholder="edit produc name" >
+        
+        <button @click="changeProduct">Change to Shoes</button>
+        
+        <p>Likes: {{likes}}</p>
+        
+        <button @click="likeProduct">👍 Like</button>
+        <hr>
+        <ul>
+            <li v-for="detail in details" >{{ detail }}</li>
+        </ul>
+
+
+        <div style="border: 3px solid orange;" v-for="variant in variants" :key="variant.variantId">
+            <p @mouseover="updateProduct(variant.variantImage)" >{{ variant.variantColor }}</p>
+        </div>
+
+        <hr>
+        <button v-on:click="addToCart()">add</button>
+        <div class="cart">
+            <p>{{ cart }}</p>
+        </div>
+
+        <hr>
+
+        <div v-for="variant in variants"
+            :key="variant.variantId"
+            class="double-border "
+            :style="{backgroundColor: variant.variantColor}"
+            @mouseover="updateProduct(variant.variantImage)"
+            >
+
+
+        </div>
+
+    </div>
+
+    <style>
+        .double-border 
+        {
+            border: 4px double #333;
+            padding: 10px;
+            width: fit-content;
+        }
+    </style>
+    
+
+    <!-- Seu script personalizado depois do Vue e no final do body -->
+    <script src="./js/main.js"></script>
 </body>
 </html>
